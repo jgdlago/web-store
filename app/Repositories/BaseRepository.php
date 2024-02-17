@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\RepositoryInterfaces\BaseRepositoryInterface;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
