@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index(): View
     {
         $products = $this->productRepository->getAllModel();
-        return view('pages.productIndex', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ProductController extends Controller
     public function show(Product|int $productId): View
     {
         $product = $this->productRepository->getModelByid($productId);
-        return view('pages.productShow', compact('product'));
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -62,5 +62,21 @@ class ProductController extends Controller
     {
         $this->productRepository->deleteModel($productId);
         return redirect()->route('product.index');
+    }
+
+    /**
+     * @return View
+     */
+    public function create(): View
+    {
+        return view('products.create');
+    }
+
+    /**
+     * @return View
+     */
+    public function edit(): View
+    {
+        return view('products.edit');
     }
 }
