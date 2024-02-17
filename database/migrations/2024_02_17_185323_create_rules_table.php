@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 150);
-            $table->string('product_code', 5)->unique();
-            $table->text('description')->nullable();
-            $table->integer('price');   // centavos
-            $table->string('unit_of_measurement', 4);   // Unidade de medida
+            $table->integer('buy_quantity')->nullable();
+            $table->integer('get_quantity')->nullable();
+            $table->integer('minimum_quantity')->nullable();
+            $table->integer('promotion_price')->nullable();
+            $table->integer('discount_percentage')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('rules');
     }
 };
