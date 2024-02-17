@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('product_code', 5)->unique();
             $table->text('description')->nullable();
             $table->integer('price');   // centavos
-            $table->string('unit_of_measurement', 4);   // Unidade de medida
+            $table->string('unit_of_measurement', 4)->nullable();   // Unidade de medida
             $table->timestamps();
         });
     }
