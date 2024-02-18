@@ -73,10 +73,12 @@ class ProductController extends Controller
     }
 
     /**
+     * @param Product|int $productId
      * @return View
      */
-    public function edit(): View
+    public function edit(Product|int $productId): View
     {
-        return view('products.edit');
+        $product = $this->productRepository->getModelByid($productId);
+        return view('products.edit', compact('product'));
     }
 }
