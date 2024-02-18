@@ -12,7 +12,7 @@ class Rule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'buy_quantity'.
+        'buy_quantity',
         'get_quantity',
         'minimum_quantity',
         'promotion_price',

@@ -27,6 +27,10 @@
                     <x-nav-link :href="route('promotions.index')" :active="request()->routeIs('promotions.index')">
                         {{ __('Promoções') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('rules.index')" :active="request()->routeIs('rules.index')">
+                        {{ __('Regras') }}
+                    </x-nav-link>
                 </div>
 
             </div>

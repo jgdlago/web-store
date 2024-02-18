@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\RuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('carts', CartController::class);
     Route::resource('cart-items', CartItemController::class);
     Route::resource('promotions', PromotionController::class);
+    Route::resource('rules', RuleController::class);
 });
 
 require __DIR__.'/auth.php';
