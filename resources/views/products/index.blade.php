@@ -21,22 +21,28 @@
                     <td class="border px-4 py-2">{{ $product->product_code }}</td>
                     <td class="border px-4 py-2">{{ $product->name }}</td>
                     <td class="border px-4 py-2">{{ $product->description }}</td>
-                    <td class="border px-4 py-2">{{ $product->price }}</td>
-                    @auth
-                        <td class="border px-4 py-2">
-                            <form action="{{ route('cart-items.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="cart_id" value="{{ auth()->user()->cart->id }}">
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <select name="quantity" class="form-select mr-2">
-                                    @for ($i = 1; $i <= 10; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
-                                </select>
-                                <button type="submit" class="btn btn-primary">Adicionar</button>
-                            </form>
-                        </td>
-                    @endauth
+                    <td class="border px-4 py-2">
+                        @auth
+                            @if(auth()->user()->cart)
+                                <form action="{{ route('cart-items.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="cart_id" value="{{ auth()->user()->cart->id }}">
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <select name="quantity" class="form-select mr-2">
+                                        @for ($i = 1; $i <= 10; $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                                </form>
+                            @else
+                                <form action="{{ route('carts.store') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Criar Carrinho</button>
+                                </form>
+                            @endif
+                        @endauth
+                    </td>
                 </tr>
             @endforeach
             </tbody>

@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\RepositoryInterfaces\CartRepositoryInterface;
 use App\ServiceInterfaces\CartServiceInterface;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Exception;
 
@@ -40,13 +41,11 @@ class CartController extends Controller
     }
 
     /**
-     * @param CartFormRequest $cartDetails
      * @return RedirectResponse
-     * @throws Exception
      */
-    public function store(CartFormRequest $cartDetails): RedirectResponse
+    public function store(): RedirectResponse
     {
-        $this->cartRepository->createModel($cartDetails->safe()->toArray());
+        $cart = $this->cartService->createNewCart(user: Auth::user());
         return redirect()->route('carts.index');
     }
 
