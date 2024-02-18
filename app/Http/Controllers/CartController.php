@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CartFormRequest;
 use App\Models\Cart;
 use App\RepositoryInterfaces\CartRepositoryInterface;
+use App\ServiceInterfaces\CartServiceInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Exception;
@@ -12,9 +13,11 @@ use Exception;
 class CartController extends Controller
 {
     protected CartRepositoryInterface $cartRepository;
-    public function __construct(CartRepositoryInterface $cartRepository)
+    protected CartServiceInterface $cartService;
+    public function __construct(CartRepositoryInterface $cartRepository, CartServiceInterface $cartService)
     {
         $this->cartRepository = $cartRepository;
+        $this->cartService = $cartService;
     }
 
     /**
@@ -78,12 +81,12 @@ class CartController extends Controller
     }
 
     /**
-     * @param Cart|int $productId
+     * @param Cart|int $cartId
      * @return View
      */
-    public function edit(Cart|int $productId): View
+    public function edit(Cart|int $cartId): View
     {
-        $cart = $this->cartRepository->getModelByid($productId);
+        $cart = $this->cartRepository->getModelByid($cartId);
         return view('carts.edit', compact('cart'));
     }
 
