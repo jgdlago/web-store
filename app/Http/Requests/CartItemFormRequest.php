@@ -24,7 +24,7 @@ class CartItemFormRequest extends FormRequest
         return [
             'cart_id' => 'required|integer|exists:carts,id',
             'product_id' => 'required|integer|exists:products,id',
-            'quantity' => 'required|integer|default:1',
+            'quantity' => 'required|integer',
         ];
     }
 }
