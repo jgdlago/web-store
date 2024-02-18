@@ -14,6 +14,10 @@ use App\RepositoryInterfaces\CartRepositoryInterface;
 use App\RepositoryInterfaces\ProductRepositoryInterface;
 use App\RepositoryInterfaces\PromotionRepositoryInterface;
 use App\RepositoryInterfaces\RuleRepositoryInterface;
+use App\ServiceInterfaces\CartItemServiceInterface;
+use App\ServiceInterfaces\CartServiceInterface;
+use App\Services\CartItemService;
+use App\Services\CartService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PromotionRepositoryInterface::class, PromotionRepository::class);
         $this->app->bind(RuleRepositoryInterface::class, RuleRepository::class);
 
+        $this->app->bind(CartItemServiceInterface::class, CartItemService::class);
+        $this->app->bind(CartServiceInterface::class, CartService::class);
     }
 
     /**
