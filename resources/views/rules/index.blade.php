@@ -9,9 +9,10 @@
             <thead>
             <tr>
                 <th class="px-4 py-2">ID</th>
-                <th class="px-4 py-2">Quantidade para Comprar</th>
-                <th class="px-4 py-2">Quantidade para Ganhar</th>
-                <th class="px-4 py-2">Quantidade Mínima para Ativar</th>
+                <th class="px-4 py-2">Nome</th>
+                <th class="px-4 py-2">Comprar</th>
+                <th class="px-4 py-2">Ganhar</th>
+                <th class="px-4 py-2">Quantidade Mínima</th>
                 <th class="px-4 py-2">Preço Promocional</th>
                 <th class="px-4 py-2">Porcentagem de Desconto</th>
                 <th class="px-4 py-2">Ações</th>
@@ -21,6 +22,7 @@
             @foreach ($rules as $rule)
                 <tr>
                     <td class="border px-4 py-2">{{ $rule->id }}</td>
+                    <td class="border px-4 py-2">{{ $rule->name }}</td>
                     <td class="border px-4 py-2">{{ $rule->buy_quantity }}</td>
                     <td class="border px-4 py-2">{{ $rule->get_quantity }}</td>
                     <td class="border px-4 py-2">{{ $rule->minimum_quantity }}</td>

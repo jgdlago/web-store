@@ -22,6 +22,7 @@ class RuleFormRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required|string|max:50',
             'buy_quantity' => 'nullable|integer',
             'get_quantity' => 'nullable|integer',
             'minimum_quantity' => 'nullable|integer',

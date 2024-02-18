@@ -12,6 +12,7 @@ class Rule extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'buy_quantity',
         'get_quantity',
         'minimum_quantity',

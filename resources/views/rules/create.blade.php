@@ -8,6 +8,11 @@
             @csrf
 
             <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-bold mb-2">Nome:</label>
+                <input type="text" name="name" id="name" class="form-input rounded-md w-full">
+            </div>
+
+            <div class="mb-4">
                 <label for="buy_quantity" class="block text-gray-700 font-bold mb-2">Compre:</label>
                 <input type="number" name="buy_quantity" id="buy_quantity" class="form-input rounded-md w-full">
             </div>

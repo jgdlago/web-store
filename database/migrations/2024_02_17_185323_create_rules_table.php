@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50);
             $table->integer('buy_quantity')->nullable();
             $table->integer('get_quantity')->nullable();
             $table->integer('minimum_quantity')->nullable();

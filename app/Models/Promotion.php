@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -12,6 +13,7 @@ class Promotion extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'product_code',
         'rule_id'
     ];
@@ -25,11 +27,11 @@ class Promotion extends Model
     }
 
     /**
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function rule(): HasOne
+    public function rule(): BelongsTo
     {
-        return $this->hasOne(Rule::class);
+        return $this->belongsTo(Rule::class);
     }
 
 }
