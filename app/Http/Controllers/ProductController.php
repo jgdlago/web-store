@@ -43,10 +43,15 @@ class ProductController extends Controller
      */
     public function store(ProductFormRequest $productDetails): RedirectResponse
     {
-        $securityGroup = $this->productRepository->createModel($productDetails->safe()->toArray());
+        $this->productRepository->createModel($productDetails->safe()->toArray());
         return redirect()->route('products.index');
     }
 
+    /**
+     * @param ProductFormRequest $productDetails
+     * @param Product|int $productId
+     * @return RedirectResponse
+     */
     public function update(ProductFormRequest $productDetails, Product|int $productId): RedirectResponse
     {
         $this->productRepository->updateModel($productDetails->safe()->toArray(), $productId);
