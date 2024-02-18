@@ -24,9 +24,9 @@
                         {{ __('Meu carrinho') }}
                     </x-nav-link>
 
-{{--                    <x-nav-link :href="route('promotions.index')" :active="request()->routeIs('promotions.index')">--}}
-{{--                        {{ __('Promoções') }}--}}
-{{--                    </x-nav-link>--}}
+                    <x-nav-link :href="route('promotions.index')" :active="request()->routeIs('promotions.index')">
+                        {{ __('Promoções') }}
+                    </x-nav-link>
                 </div>
 
             </div>
