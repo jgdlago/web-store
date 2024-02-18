@@ -44,13 +44,13 @@ class ProductController extends Controller
     public function store(ProductFormRequest $productDetails): RedirectResponse
     {
         $securityGroup = $this->productRepository->createModel($productDetails->safe()->toArray());
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 
     public function update(ProductFormRequest $productDetails, Product|int $productId): RedirectResponse
     {
         $this->productRepository->updateModel($productDetails->safe()->toArray(), $productId);
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -61,7 +61,7 @@ class ProductController extends Controller
     public function destroy(Product|int $productId): RedirectResponse
     {
         $this->productRepository->deleteModel($productId);
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 
     /**
