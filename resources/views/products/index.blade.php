@@ -22,15 +22,21 @@
                     <td class="border px-4 py-2">{{ $product->name }}</td>
                     <td class="border px-4 py-2">{{ $product->description }}</td>
                     <td class="border px-4 py-2">{{ $product->price }}</td>
-                    <td class="border px-4 py-2">
-                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-info mr-2">View</a>
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary mr-2">Edit</a>
-                        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+                    @auth
+                        <td class="border px-4 py-2">
+                            <form action="{{ route('cart-items.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="cart_id" value="{{ auth()->user()->cart->id }}">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <select name="quantity" class="form-select mr-2">
+                                    @for ($i = 1; $i <= 10; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                            </form>
+                        </td>
+                    @endauth
                 </tr>
             @endforeach
             </tbody>
