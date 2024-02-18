@@ -24,10 +24,14 @@ class PriceCast implements CastsAttributes
      * @param string $key
      * @param mixed $value
      * @param array $attributes
-     * @return int
+     * @return ?int
      */
-    public function set(Model $model, string $key, mixed $value, array $attributes): int
+    public function set(Model $model, string $key, mixed $value, array $attributes): ?int
     {
+        if ($value === null) {
+            return null;
+        }
+
         return (int) preg_replace('/[^0-9]/', '', $value);
     }
 }
