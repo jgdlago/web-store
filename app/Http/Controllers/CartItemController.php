@@ -62,14 +62,13 @@ class CartItemController extends Controller
     }
 
     /**
-     * @param CartItem|int $cartItemId
+     * @param CartItem $cartItem
      * @return RedirectResponse
-     * @throws Exception
      */
-    public function destroy(CartItem|int $cartItemId): RedirectResponse
+    public function destroy(CartItem $cartItem): RedirectResponse
     {
-        $this->cartItemRepository->deleteModel($cartItemId);
-        return redirect()->route('carts.index');
+        $cartItem->delete();
+        return redirect()->route('carts.index')->with('success', 'Item removido do carrinho com sucesso.');
     }
 
     /**
