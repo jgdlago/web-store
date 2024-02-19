@@ -26,8 +26,8 @@ class CartController extends Controller
      */
     public function index(): View
     {
-        $carts = $this->cartRepository->getAllModel();
-        return view('carts.index', compact('carts'));
+        $myCart = $this->cartRepository->getCartByUserId(Auth::id());
+        return view('carts.index', compact('myCart'));
     }
 
     /**

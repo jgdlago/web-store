@@ -11,4 +11,13 @@ class CartRepository extends BaseRepository implements CartRepositoryInterface
     {
         parent::__construct($cart);
     }
+
+    /**
+     * @param int $userId
+     * @return Cart|null
+     */
+    public function getCartByUserId(int $userId): ?Cart
+    {
+        return Cart::where('user_id', $userId)->first();
+    }
 }
