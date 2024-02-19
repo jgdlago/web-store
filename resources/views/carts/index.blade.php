@@ -16,10 +16,10 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($carts as $cart)
-                @foreach ($cart->cartItem as $item)
+
+                @foreach ($myCart->cartItem as $item)
                     <tr>
-                        <td class="border px-4 py-2">{{ $cart->id }}</td>
+                        <td class="border px-4 py-2">{{ $myCart->id }}</td>
                         <td class="border px-4 py-2">
                             @if ($item->product)
                                 {{ $item->product->name }}
@@ -37,8 +37,8 @@
                         </td>
                         <td class="border px-4 py-2">{{ $item->subtotal }}</td>
                         <td class="border px-4 py-2">
-                            <a href="{{ route('carts.show', $cart->id) }}" class="btn btn-info mr-2">View</a>
-                            <a href="{{ route('carts.edit', $cart->id) }}" class="btn btn-primary mr-2">Edit</a>
+                            <a href="{{ route('carts.show', $myCart->id) }}" class="btn btn-info mr-2">View</a>
+                            <a href="{{ route('carts.edit', $myCart->id) }}" class="btn btn-primary mr-2">Edit</a>
                             <form action="{{ route('cart-items.destroy', $item->id) }}" method="POST">
                             @csrf
                                 @method('DELETE')
@@ -47,7 +47,12 @@
                         </td>
                     </tr>
                 @endforeach
-            @endforeach
+
+                <tr>
+                    <td colspan="4" class="text-right font-bold">Total:</td>
+                    <td colspan="2">{{ $myCart->total_price }}</td>
+                </tr>
+
             </tbody>
         </table>
     </div>
