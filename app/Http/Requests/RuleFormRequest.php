@@ -26,7 +26,7 @@ class RuleFormRequest extends FormRequest
             'buy_quantity' => 'nullable|integer',
             'get_quantity' => 'nullable|integer',
             'minimum_quantity' => 'nullable|integer',
-            'promotion_price' => 'nullable|integer',
+            'promotion_price' => 'nullable|string',
             'discount_percentage' => 'nullable|integer',
         ];
     }

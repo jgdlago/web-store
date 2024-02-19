@@ -25,7 +25,7 @@ class ProductFormRequest extends FormRequest
             'name' => 'required|string',
             'product_code' => 'required|string:max:5',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
+            'price' => 'required|string',
             'unit_of_measurement' => 'nullable|string|max:4',
         ];
     }
