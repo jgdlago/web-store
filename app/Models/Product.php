@@ -28,7 +28,7 @@ class Product extends Model
      */
     public function promotion(): BelongsTo
     {
-        return $this->belongsTo(Promotion::class);
+        return $this->belongsTo(Promotion::class, 'product_code', 'product_code');
     }
 
 }
