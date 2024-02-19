@@ -8,7 +8,6 @@ use App\Models\Product;
 use App\RepositoryInterfaces\CartItemRepositoryInterface;
 use App\ServiceInterfaces\CartItemServiceInterface;
 use Illuminate\Database\Eloquent\Model;
-use Ramsey\Uuid\Type\Decimal;
 use Exception;
 
 class CartItemService implements CartItemServiceInterface
@@ -21,7 +20,7 @@ class CartItemService implements CartItemServiceInterface
 
     /**
      * @param array $cartItemDetails
-     * @return CartItem
+     * @return CartItem|Model
      * @throws Exception
      */
     public function createNewCartItem(array $cartItemDetails): CartItem|Model
