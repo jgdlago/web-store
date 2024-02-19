@@ -7,6 +7,7 @@ use App\Models\CartItem;
 use App\Models\Product;
 use App\RepositoryInterfaces\CartItemRepositoryInterface;
 use App\ServiceInterfaces\CartItemServiceInterface;
+use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Type\Decimal;
 use Exception;
 
@@ -23,9 +24,21 @@ class CartItemService implements CartItemServiceInterface
      * @return CartItem
      * @throws Exception
      */
-    public function createNewCartItem(array $cartItemDetails): CartItem
+    public function createNewCartItem(array $cartItemDetails): CartItem|Model
     {
         $product = Product::findOrFail($cartItemDetails['product_id']);
+        $cart = Cart::findOrFail($cartItemDetails['cart_id']);
+
+        $existingCartItem = $cart->cartItem()->where('product_id', $product->id)->first();
+
+        if ($existingCartItem) {
+            $existingCartItem->quantity += $cartItemDetails['quantity'];
+            $existingCartItem->subtotal = $this->calculateSubtotal($existingCartItem->quantity, $product->price);
+            $existingCartItem->save();
+
+            return $existingCartItem;
+        }
+
         $cartItemDetails['subtotal'] = $this->calculateSubtotal($cartItemDetails['quantity'], $product->price);
 
         return $this->cartItemRepository->createModel($cartItemDetails);
