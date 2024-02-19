@@ -21,6 +21,7 @@
                     <td class="border px-4 py-2">{{ $product->product_code }}</td>
                     <td class="border px-4 py-2">{{ $product->name }}</td>
                     <td class="border px-4 py-2">{{ $product->description }}</td>
+                    <td class="border px-4 py-2">{{ $product->price }}</td>
                     <td class="border px-4 py-2">
                         @auth
                             @if(auth()->user()->cart)
