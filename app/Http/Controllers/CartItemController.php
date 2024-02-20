@@ -15,15 +15,10 @@ class CartItemController extends Controller
 {
     protected CartItemRepositoryInterface $cartItemRepository;
     protected CartItemServiceInterface $cartItemService;
-    protected CartServiceInterface $cartService;
-    public function __construct(CartItemRepositoryInterface $cartItemRepository,
-        CartItemServiceInterface $cartItemService,
-        CartServiceInterface $cartService
-    )
+    public function __construct(CartItemRepositoryInterface $cartItemRepository, CartItemServiceInterface $cartItemService)
     {
         $this->cartItemRepository = $cartItemRepository;
         $this->cartItemService = $cartItemService;
-        $this->cartService = $cartService;
     }
 
     /**
