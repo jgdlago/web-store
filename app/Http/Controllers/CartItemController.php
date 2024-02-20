@@ -53,8 +53,6 @@ class CartItemController extends Controller
     public function store(CartItemFormRequest $cartItemDetails): RedirectResponse
     {
         $cartItem = $this->cartItemService->createNewCartItem($cartItemDetails->safe()->toArray());
-
-        $this->cartService->calculateTotalPrice($cartItem->cart_id);
         return redirect()->route('carts.index');
     }
 
