@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CartItemCreatedEvent;
 use App\Http\Requests\CartItemFormRequest;
 use App\Models\CartItem;
 use App\RepositoryInterfaces\CartItemRepositoryInterface;
@@ -47,6 +48,7 @@ class CartItemController extends Controller
     public function store(CartItemFormRequest $cartItemDetails): RedirectResponse
     {
         $this->cartItemService->createNewCartItem($cartItemDetails->safe()->toArray());
+        event(new CartItemCreatedEvent());
         return redirect()->route('carts.index');
     }
 
