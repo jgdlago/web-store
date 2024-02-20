@@ -50,7 +50,8 @@ class CartService implements CartServiceInterface
 
                 if ($this->promotionRuleIsValid($rule)) {
                     $subtotal = $this->calculatePromotionalSubtotal($item, $rule);
-                    $item->subtotal = $subtotal;
+                    $formattedSubtotal = number_format($subtotal, 2, ',', '.');
+                    $item->subtotal = $formattedSubtotal;
                     $item->save();
                 }
             }

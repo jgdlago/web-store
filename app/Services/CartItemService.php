@@ -39,7 +39,6 @@ class CartItemService implements CartItemServiceInterface
         }
 
         $cartItemDetails['subtotal'] = $this->calculateSubtotal($cartItemDetails['quantity'], $product->price);
-
         return $this->cartItemRepository->createModel($cartItemDetails);
     }
 
