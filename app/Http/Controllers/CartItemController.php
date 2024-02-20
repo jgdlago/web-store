@@ -6,7 +6,6 @@ use App\Http\Requests\CartItemFormRequest;
 use App\Models\CartItem;
 use App\RepositoryInterfaces\CartItemRepositoryInterface;
 use App\ServiceInterfaces\CartItemServiceInterface;
-use App\ServiceInterfaces\CartServiceInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Exception;
@@ -47,7 +46,7 @@ class CartItemController extends Controller
      */
     public function store(CartItemFormRequest $cartItemDetails): RedirectResponse
     {
-        $cartItem = $this->cartItemService->createNewCartItem($cartItemDetails->safe()->toArray());
+        $this->cartItemService->createNewCartItem($cartItemDetails->safe()->toArray());
         return redirect()->route('carts.index');
     }
 
