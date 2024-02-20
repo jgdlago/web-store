@@ -29,7 +29,7 @@
 
             <div class="mb-4">
                 <label for="promotion_price" class="block text-gray-700 font-bold mb-2">Preço Promocional:</label>
-                <input type="number" name="promotion_price" id="promotion_price" class="form-input rounded-md w-full">
+                <input type="number" step="0.01" name="promotion_price" id="promotion_price" class="form-input rounded-md w-full">
             </div>
 
             <div class="mb-4">

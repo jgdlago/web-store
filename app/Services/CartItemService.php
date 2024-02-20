@@ -50,7 +50,7 @@ class CartItemService implements CartItemServiceInterface
      */
     public function calculateSubtotal(int $quantity, string $price): string
     {
-        $priceDecimal = floatval(str_replace(',', '.', $price));;
+        $priceDecimal = floatval(str_replace(',', '.', $price));
 
         $subtotal = bcmul($priceDecimal, $quantity, 2);
 

@@ -6,6 +6,7 @@ use App\Http\Requests\CartItemFormRequest;
 use App\Models\CartItem;
 use App\RepositoryInterfaces\CartItemRepositoryInterface;
 use App\ServiceInterfaces\CartItemServiceInterface;
+use App\ServiceInterfaces\CartServiceInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Exception;
@@ -14,10 +15,15 @@ class CartItemController extends Controller
 {
     protected CartItemRepositoryInterface $cartItemRepository;
     protected CartItemServiceInterface $cartItemService;
-    public function __construct(CartItemRepositoryInterface $cartItemRepository, CartItemServiceInterface $cartItemService)
+    protected CartServiceInterface $cartService;
+    public function __construct(CartItemRepositoryInterface $cartItemRepository,
+        CartItemServiceInterface $cartItemService,
+        CartServiceInterface $cartService
+    )
     {
         $this->cartItemRepository = $cartItemRepository;
         $this->cartItemService = $cartItemService;
+        $this->cartService = $cartService;
     }
 
     /**
@@ -46,7 +52,9 @@ class CartItemController extends Controller
      */
     public function store(CartItemFormRequest $cartItemDetails): RedirectResponse
     {
-        $this->cartItemService->createNewCartItem($cartItemDetails->safe()->toArray());
+        $cartItem = $this->cartItemService->createNewCartItem($cartItemDetails->safe()->toArray());
+
+        $this->cartService->calculateTotalPrice($cartItem->cart_id);
         return redirect()->route('carts.index');
     }
 
