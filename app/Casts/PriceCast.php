@@ -16,6 +16,14 @@ class PriceCast implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): ?string
     {
+        if ($value === null) {
+            return null;
+        }
+
+        if (!is_numeric($value)) {
+            return null;
+        }
+
         return number_format($value / 100, 2, ',', '.');
     }
 
@@ -24,7 +32,7 @@ class PriceCast implements CastsAttributes
      * @param string $key
      * @param mixed $value
      * @param array $attributes
-     * @return ?int
+     * @return int|null
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): ?int
     {
@@ -32,6 +40,20 @@ class PriceCast implements CastsAttributes
             return null;
         }
 
-        return (int) preg_replace('/[^0-9]/', '', $value);
+        if (is_string($value)) {
+            $value = str_replace(',', '.', $value);
+            $value = floatval($value);
+        }
+
+        if (!is_numeric($value)) {
+            throw new \InvalidArgumentException("O valor deve ser numérico para ser convertido em centavos.");
+        }
+
+        $value *= 100;
+
+        return (int) $value;
     }
 }
+
+
+

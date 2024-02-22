@@ -70,6 +70,7 @@ class CartItemController extends Controller
     public function destroy(CartItem $cartItem): RedirectResponse
     {
         $cartItem->delete();
+        event(new CartItemCreatedEvent());
         return redirect()->route('carts.index')->with('success', 'Item removido do carrinho com sucesso.');
     }
 

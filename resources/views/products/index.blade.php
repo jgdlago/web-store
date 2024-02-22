@@ -33,7 +33,7 @@
                                     <input type="hidden" name="cart_id" value="{{ auth()->user()->cart->id }}">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <div class="flex items-center">
-                                        <input type="number" name="quantity" class="form-input rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" min="1" max="10" value="1">
+                                        <input type="number" name="quantity" class="form-input rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" min="1" value="1">
                                         <button type="submit" class="btn btn-primary ml-2">
                                             <i class="fas fa-plus text-lg text-green-600 ml-4"></i>
                                         </button>
