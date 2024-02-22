@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="flex justify-between">
-                    <button type="submit" class="btn btn-primary">Create Product</button>
+                    <button type="submit" class="btn btn-primary">Criar produto</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>

@@ -1,4 +1,3 @@
-<!-- resources/views/products/index.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -15,6 +14,7 @@
                 <th class="px-4 py-2">Nome</th>
                 <th class="px-4 py-2">Descrição</th>
                 <th class="px-4 py-2">Preço</th>
+                <th class="px-4 py-2">Quantidade</th>
                 <th class="px-4 py-2"></th>
             </tr>
             </thead>
@@ -32,17 +32,19 @@
                                     @csrf
                                     <input type="hidden" name="cart_id" value="{{ auth()->user()->cart->id }}">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <select name="quantity" class="form-select mr-2">
-                                        @for ($i = 1; $i <= 10; $i++)
-                                            <option value="{{ $i }}">{{ $i }}</option>
-                                        @endfor
-                                    </select>
-                                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                                    <div class="flex items-center">
+                                        <input type="number" name="quantity" class="form-input rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" min="1" max="10" value="1">
+                                        <button type="submit" class="btn btn-primary ml-2">
+                                            <i class="fas fa-plus text-lg text-green-600 ml-4"></i>
+                                        </button>
+                                    </div>
                                 </form>
                             @else
                                 <form action="{{ route('carts.store') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary">Criar Carrinho</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-shopping-cart text-lg text-green-600 ml-4"></i>
+                                    </button>
                                 </form>
                             @endif
                         @endauth
