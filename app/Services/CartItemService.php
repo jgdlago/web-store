@@ -14,6 +14,7 @@ use Exception;
 class CartItemService implements CartItemServiceInterface
 {
     protected CartItemRepositoryInterface $cartItemRepository;
+
     public function __construct(CartItemRepositoryInterface $cartItemRepository)
     {
         $this->cartItemRepository = $cartItemRepository;
@@ -35,6 +36,8 @@ class CartItemService implements CartItemServiceInterface
             $existingCartItem->quantity += $cartItemDetails['quantity'];
             $existingCartItem->subtotal = $this->calculateSubtotal($existingCartItem->quantity, $product->price);
             $existingCartItem->save();
+
+            $this->applyPromotions($existingCartItem);
 
             return $existingCartItem;
         }
@@ -68,12 +71,14 @@ class CartItemService implements CartItemServiceInterface
      */
     public function applyPromotions(CartItem $cartItem): void
     {
-        if ($cartItem->product->promotion) {
-            $rule = $cartItem->product->promotion->rule;
+        $product = $cartItem->product;
+
+        if ($product->promotion) {
+            $rule = $product->promotion->rule;
 
             if ($this->promotionRuleIsValid($rule)) {
                 $subtotal = $this->calculatePromotionalSubtotal($cartItem, $rule);
-                $cartItem->subtotal = number_format($subtotal, 2, ',', '.');
+                $cartItem->subtotal = number_format($subtotal, 2, '.', '');
                 $cartItem->save();
             }
         }
@@ -82,23 +87,13 @@ class CartItemService implements CartItemServiceInterface
     /**
      * @param Rule $rule
      * @return bool
-     * buy_quantity && get_quantity
-     * minimum_quantity && promotion_price
-     * discount_percentage
      */
     public function promotionRuleIsValid(Rule $rule): bool
     {
-        $filledFields = collect($rule->toArray())
-            ->filter(function ($value, $key) {
-                return !is_null($value);
-            })
-            ->keys()
-            ->toArray();
-
         return (
-            (in_array('buy_quantity', $filledFields) && in_array('get_quantity', $filledFields)) ||
-            (in_array('minimum_quantity', $filledFields) && in_array('promotion_price', $filledFields)) ||
-            in_array('discount_percentage', $filledFields)
+            $rule->buy_quantity !== null && $rule->get_quantity !== null ||
+            $rule->minimum_quantity !== null && $rule->promotion_price !== null ||
+            $rule->discount_percentage !== null
         );
     }
 
@@ -121,9 +116,8 @@ class CartItemService implements CartItemServiceInterface
         } else if ($rule->buy_quantity === 1 && $rule->get_quantity === 1) {
             return $this->calculateBuyOneGetOne($unitPrice, $quantity);
         }
-        else {
-            return $this->calculateRegularSubtotal($unitPrice, $quantity);
-        }
+
+        return $this->calculateRegularSubtotal($unitPrice, $quantity);
     }
 
     /**
@@ -156,15 +150,9 @@ class CartItemService implements CartItemServiceInterface
      */
     public function calculateBuyOneGetOne(float $unitPrice, int $quantity): float
     {
-        $priceForOne = $unitPrice;
-
         $paidItems = $quantity - floor($quantity / 2);
-        $freeItems = $quantity - $paidItems;
 
-        $subtotal = ($paidItems * $priceForOne) + ($freeItems * 0);
-
-        return $subtotal;
-
+        return $paidItems * $unitPrice;
     }
 
     /**
@@ -180,9 +168,9 @@ class CartItemService implements CartItemServiceInterface
 
         if ($quantity >= $minimumQuantity) {
             return $quantity * $promotionPrice;
-        } else {
-            return $quantity * $unitPrice;
         }
+
+        return $quantity * $unitPrice;
     }
 
     /**
@@ -208,5 +196,5 @@ class CartItemService implements CartItemServiceInterface
     {
         return $quantity * $unitPrice;
     }
-
 }
+
