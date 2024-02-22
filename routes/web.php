@@ -35,12 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/products/{product}', [ProductController::class, 'destroy'])->name('promotions.show');
 
     Route::get('/promotions/create', [PromotionController::class, 'create'])->name('promotions.create');
     Route::post('/promotions', [PromotionController::class, 'store'])->name('promotions.store');
     Route::get('/promotions/{promotion}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
     Route::put('/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
     Route::delete('/promotions/{promotion}', [PromotionController::class, 'destroy'])->name('promotions.destroy');
+    Route::get('/promotions/{promotion}', [PromotionController::class, 'destroy'])->name('promotions.show');
 
     Route::resource('carts', CartController::class);
     Route::resource('cart-items', CartItemController::class);
