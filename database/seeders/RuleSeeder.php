@@ -22,12 +22,12 @@ class RuleSeeder extends Seeder
             [
                 'name' => 'Mais de 1 un 21,70',
                 'minimum_quantity' => 1,
-                'promotion_price' => 2170,
+                'promotion_price' => '21,70',
             ],
             [
                 'name' => 'Compre 1 fardo 7,50 un',
                 'minimum_quantity' => 6,
-                'promotion_price' => 750
+                'promotion_price' => '7,50'
             ],
             [
                 'name' => 'Compre 3 ganhe 1',
@@ -42,7 +42,7 @@ class RuleSeeder extends Seeder
             [
                 'name' => 'Compre 3 3,00',
                 'minimum_quantity' => 3,
-                'promotion_price' => 300
+                'promotion_price' => '3,00'
             ]
         ];
 
