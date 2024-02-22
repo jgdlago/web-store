@@ -1,3 +1,4 @@
+<!-- resources/views/products/index.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -50,5 +51,10 @@
             @endforeach
             </tbody>
         </table>
+
+        <div class="mt-4">
+            {{ $products->links() }}
+        </div>
+
     </div>
 @endsection

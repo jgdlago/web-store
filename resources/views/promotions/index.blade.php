@@ -10,7 +10,6 @@
         <table class="table w-full">
             <thead>
             <tr>
-                <th class="px-4 py-2">ID</th>
                 <th class="px-4 py-2">Nome</th>
                 <th class="px-4 py-2">Código do Produto</th>
                 <th class="px-4 py-2">Regra</th>
@@ -20,7 +19,6 @@
             <tbody>
             @foreach ($promotions as $promotion)
                 <tr>
-                    <td class="border px-4 py-2">{{ $promotion->id }}</td>
                     <td class="border px-4 py-2">{{ $promotion->name }}</td>
                     <td class="border px-4 py-2">{{ $promotion->product_code }}</td>
                     <td class="border px-4 py-2">{{ $promotion->rule->name }}</td>
@@ -37,5 +35,10 @@
             @endforeach
             </tbody>
         </table>
+
+            <div class="mt-4">
+                {{ $promotions->links() }}
+            </div>
+
     </div>
 @endsection

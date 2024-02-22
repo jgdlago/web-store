@@ -6,6 +6,7 @@ use App\RepositoryInterfaces\BaseRepositoryInterface;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BaseRepository implements BaseRepositoryInterface
 {
@@ -18,11 +19,11 @@ class BaseRepository implements BaseRepositoryInterface
     /**
      *  return all models
      *
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function getAllModel(): Collection
+    public function getAllModel(): LengthAwarePaginator
     {
-        return $this->model::all();
+        return $this->model::paginate(10);
     }
 
     /**
