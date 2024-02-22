@@ -3,7 +3,9 @@
 @section('content')
     <div class="flex flex-col items-center justify-center">
         <h1 class="text-2xl font-bold text-gray-800 mb-4">Produtos</h1>
-        <a href="{{ route('products.create') }}" class="btn btn-primary mb-4">Novo Produto</a>
+        @auth
+            <a href="{{ route('products.create') }}" class="btn btn-primary mb-4">Novo Produto</a>
+        @endauth
 
         <table class="table w-full">
             <thead>
