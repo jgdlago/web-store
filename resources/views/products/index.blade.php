@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="flex flex-col items-center justify-center">
-        <h1 class="text-2xl font-bold text-gray-800 mb-4">Produtos</h1>
         @auth
             <a href="{{ route('products.create') }}" class="btn btn-primary mb-4">Novo Produto</a>
         @endauth

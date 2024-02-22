@@ -3,7 +3,6 @@
 @section('content')
     <div class="flex flex-col items-center justify-center">
         @auth()
-        <h1 class="text-2xl font-bold text-gray-800 mb-4">Promoções</h1>
         <a href="{{ route('promotions.create') }}" class="btn btn-primary mb-4">Nova Promoção</a>
         @endauth
 
