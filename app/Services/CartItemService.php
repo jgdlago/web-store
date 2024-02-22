@@ -112,13 +112,16 @@ class CartItemService implements CartItemServiceInterface
         $unitPrice = floatval(str_replace(',', '.', $cartItem->product->price));
         $quantity = $cartItem->quantity;
 
-        if ($rule->buy_quantity && $rule->get_quantity) {
+        if ($rule->buy_quantity != 1 && $rule->get_quantity) {
             return $this->calculateBuyGetXSubtotal($unitPrice, $quantity, $rule);
         } elseif ($rule->minimum_quantity && $rule->promotion_price) {
             return $this->calculateMinimumQuantityPromotionSubtotal($unitPrice, $quantity, $rule);
         } elseif ($rule->discount_percentage) {
             return $this->calculateDiscountPercentageSubtotal($unitPrice, $quantity, $rule);
-        } else {
+        } else if ($rule->buy_quantity === 1 && $rule->get_quantity === 1) {
+            return $this->calculateBuyOneGetOne($unitPrice, $quantity);
+        }
+        else {
             return $this->calculateRegularSubtotal($unitPrice, $quantity);
         }
     }
@@ -144,6 +147,24 @@ class CartItemService implements CartItemServiceInterface
         $subtotal -= $freeProducts * $unitPrice;
 
         return $subtotal;
+    }
+
+    /**
+     * @param float $unitPrice
+     * @param int $quantity
+     * @return float
+     */
+    public function calculateBuyOneGetOne(float $unitPrice, int $quantity): float
+    {
+        $priceForOne = $unitPrice;
+
+        $paidItems = $quantity - floor($quantity / 2);
+        $freeItems = $quantity - $paidItems;
+
+        $subtotal = ($paidItems * $priceForOne) + ($freeItems * 0);
+
+        return $subtotal;
+
     }
 
     /**

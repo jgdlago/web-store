@@ -11,7 +11,7 @@
                 <th class="px-4 py-2">Nome do Produto</th>
                 <th class="px-4 py-2">Quantidade</th>
                 <th class="px-4 py-2">Preço Unitário</th>
-                <th class="px-4 py-2">Total</th>
+                <th class="px-4 py-2">Subtotal</th>
                 <th class="px-4 py-2"></th>
             </tr>
             </thead>
