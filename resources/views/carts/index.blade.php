@@ -35,12 +35,10 @@
                         </td>
                         <td class="border px-4 py-2">{{ $item->subtotal }}</td>
                         <td class="border px-4 py-2">
-                            <a href="{{ route('carts.show', $myCart->id) }}" class="btn btn-info mr-2">View</a>
-                            <a href="{{ route('carts.edit', $myCart->id) }}" class="btn btn-primary mr-2">Edit</a>
                             <form action="{{ route('cart-items.destroy', $item->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Remover</button>
                             </form>
                         </td>
                     </tr>

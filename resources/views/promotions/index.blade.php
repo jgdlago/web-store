@@ -12,7 +12,6 @@
                 <th class="px-4 py-2">Nome</th>
                 <th class="px-4 py-2">Código do Produto</th>
                 <th class="px-4 py-2">Regra</th>
-                <th class="px-4 py-2"></th>
             </tr>
             </thead>
             <tbody>
@@ -22,8 +21,6 @@
                     <td class="border px-4 py-2">{{ $promotion->product_code }}</td>
                     <td class="border px-4 py-2">{{ $promotion->rule->name }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('promotions.show', $promotion->id) }}" class="btn btn-info mr-2">View</a>
-                        <a href="{{ route('promotions.edit', $promotion->id) }}" class="btn btn-primary mr-2">Edit</a>
                         <form action="{{ route('promotions.destroy', $promotion->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
