@@ -18,4 +18,6 @@
   
     sail artisan db:seed
   <p>Cria os seeders</p>
+
+  <p>O arquivo .env deve conter as definições de E-mail desejadas para o funcionamento correto do sistema.</p>
 </ul>
