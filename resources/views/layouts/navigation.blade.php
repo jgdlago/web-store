@@ -31,6 +31,11 @@
                     <x-nav-link :href="route('rules.index')" :active="request()->routeIs('rules.index')">
                         {{ __('Regras') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('purchaseHistories.index')" :active="request()->routeIs('purchaseHistories.index')">
+                        {{ __('Histórico de Compras') }}
+                    </x-nav-link>
+
                 </div>
 
             </div>

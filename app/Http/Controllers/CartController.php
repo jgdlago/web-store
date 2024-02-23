@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CartFormRequest;
 use App\Models\Cart;
+use App\Models\PurchaseHistory;
 use App\RepositoryInterfaces\CartRepositoryInterface;
 use App\ServiceInterfaces\CartServiceInterface;
+use http\Client\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;

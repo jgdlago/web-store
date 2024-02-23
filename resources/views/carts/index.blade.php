@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="flex flex-col items-center justify-center">
-
         <table class="table w-full">
             <thead>
             <tr>
@@ -49,6 +48,15 @@
                 <tr>
                     <td colspan="4" class="text-right font-bold">Total:</td>
                     <td colspan="2">{{ $myCart->total_price }}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <form action="{{ route('purchase.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="cart_id" value="{{ $myCart->id }}">
+                            <button type="submit" class="btn btn-success">Finalizar Compra</button>
+                        </form>
+                    </td>
                 </tr>
             @else
                 <tr>

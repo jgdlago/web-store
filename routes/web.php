@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\RuleController;
+use App\Http\Controllers\PurchaseHistoricController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/promotions/{promotion}', [PromotionController::class, 'update'])->name('promotions.update');
     Route::delete('/promotions/{promotion}', [PromotionController::class, 'destroy'])->name('promotions.destroy');
     Route::get('/promotions/{promotion}', [PromotionController::class, 'destroy'])->name('promotions.show');
+
+    Route::post('/purchase/checkout', [PurchaseHistoricController::class, 'store'])->name('purchase.store');
+    Route::get('/purchase-histories', 'App\Http\Controllers\PurchaseHistoricController@index')
+        ->name('purchaseHistories.index');
 
     Route::resource('carts', CartController::class);
     Route::resource('cart-items', CartItemController::class);
