@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\PurchaseHistoryCreated;
+use App\Listeners\SendPurchaseConfirmationEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\CartItemCreatedEvent;
+use App\Listeners\UpdateTotalPriceListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,14 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        CartItemCreatedEvent::class => [
+            UpdateTotalPriceListener::class,
+        ],
+
+        PurchaseHistoryCreated::class => [
+            SendPurchaseConfirmationEmail::class
+        ]
     ];
 
     /**
