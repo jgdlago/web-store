@@ -33,5 +33,4 @@ class CartService implements CartServiceInterface
 
         return $user->cart;
     }
-
 }

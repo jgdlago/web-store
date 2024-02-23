@@ -90,5 +90,4 @@ class CartController extends Controller
         $cart = $this->cartRepository->getModelByid($cartId);
         return view('carts.edit', compact('cart'));
     }
-
 }

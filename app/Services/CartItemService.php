@@ -113,7 +113,7 @@ class CartItemService implements CartItemServiceInterface
             return $this->calculateMinimumQuantityPromotionSubtotal($unitPrice, $quantity, $rule);
         } elseif ($rule->discount_percentage) {
             return $this->calculateDiscountPercentageSubtotal($unitPrice, $quantity, $rule);
-        } else if ($rule->buy_quantity === 1 && $rule->get_quantity === 1) {
+        } elseif ($rule->buy_quantity === 1 && $rule->get_quantity === 1) {
             return $this->calculateBuyOneGetOne($unitPrice, $quantity);
         }
 
@@ -197,4 +197,3 @@ class CartItemService implements CartItemServiceInterface
         return $quantity * $unitPrice;
     }
 }
-

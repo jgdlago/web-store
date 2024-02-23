@@ -54,6 +54,3 @@ class PriceCast implements CastsAttributes
         return (int) $value;
     }
 }
-
-
-
