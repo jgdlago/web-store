@@ -11,12 +11,12 @@ use Exception;
 
 class PurchaseHistoricController extends Controller
 {
-    protected PurchaseHistoricServiceInterface $historicService;
-    protected PurchaseHistoricRepositoryInterface $purchaseRepository;
-    public function __construct(PurchaseHistoricRepositoryInterface $purchaseRepository, PurchaseHistoricServiceInterface $historicService)
+    protected PurchaseHistoricRepositoryInterface $purchaseHistoricRepository;
+    protected PurchaseHistoricServiceInterface $purchaseHistoricService;
+    public function __construct(PurchaseHistoricRepositoryInterface $purchaseHistoricRepository, PurchaseHistoricServiceInterface $purchaseHistoricService)
     {
-        $this->purchaseRepository = $purchaseRepository;
-        $this->historicService = $historicService;
+        $this->purchaseHistoricRepository = $purchaseHistoricRepository;
+        $this->purchaseHistoricService = $purchaseHistoricService;
     }
 
     /**
@@ -24,7 +24,7 @@ class PurchaseHistoricController extends Controller
      */
     public function index(): View
     {
-        $purchaseHistories = $this->purchaseRepository->getHistoryByUser(Auth::id());
+        $purchaseHistories = $this->purchaseHistoricRepository->getHistoryByUser(Auth::id());
         return view('purchaseHistories.index', compact('purchaseHistories'));
     }
 
@@ -34,7 +34,7 @@ class PurchaseHistoricController extends Controller
      */
     public function store(): RedirectResponse
     {
-        $this->historicService->recordPurchaseHistoric();
+        $this->purchaseHistoricService->recordPurchaseHistoric();
         return redirect()->route('purchaseHistories.index');
     }
 
