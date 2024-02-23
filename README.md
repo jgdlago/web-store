@@ -21,3 +21,5 @@
 
   <p>O arquivo .env deve conter as definições de E-mail desejadas para o funcionamento correto do sistema.</p>
 </ul>
+
+![dbdiagram](https://github.com/jgdlago/web-store-backend/assets/50213926/d725e386-5664-47d1-af56-4390f9ebe2b1)
