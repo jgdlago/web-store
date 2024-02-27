@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class PurchaseConfirmationMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public PurchaseHistory $purchase;
 

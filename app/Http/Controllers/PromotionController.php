@@ -90,5 +90,4 @@ class PromotionController extends Controller
         $promotion = $this->promotionRepository->getModelByid($promotionId);
         return view('promotions.edit', compact('promotion'));
     }
-
 }

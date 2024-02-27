@@ -37,5 +37,4 @@ class PurchaseHistoricController extends Controller
         $this->purchaseHistoricService->recordPurchaseHistoric();
         return redirect()->route('purchaseHistories.index');
     }
-
 }

@@ -39,5 +39,4 @@ class Product extends Model
     {
         return $this->belongsToMany(PurchaseHistory::class)->withPivot('quantity', 'subtotal');
     }
-
 }

@@ -86,5 +86,4 @@ class RuleController extends Controller
         $rule = $this->ruleRepository->getModelByid($ruleId);
         return view('rules.edit', compact('rule'));
     }
-
 }

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UpdateTotalPriceHelpers
 {
-
     /**
      * @return void
      */
@@ -26,5 +25,4 @@ class UpdateTotalPriceHelpers
         $cart->total_price = $totalPrice;
         $cart->save();
     }
-
 }

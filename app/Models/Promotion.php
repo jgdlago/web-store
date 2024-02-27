@@ -33,5 +33,4 @@ class Promotion extends Model
     {
         return $this->belongsTo(Rule::class);
     }
-
 }

@@ -13,7 +13,6 @@
                 <th class="px-4 py-2">Quantidade Mínima</th>
                 <th class="px-4 py-2">Preço Promocional</th>
                 <th class="px-4 py-2">Porcentagem de Desconto</th>
-                <th class="px-4 py-2">Ações</th>
             </tr>
             </thead>
             <tbody>
@@ -56,11 +55,10 @@
                         @endif
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('rules.edit', $rule->id) }}" class="btn btn-warning">Editar</a>
                         <form action="{{ route('rules.destroy', $rule->id) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            <button type="submit" class="btn btn-danger">Remover</button>
                         </form>
                     </td>
                 </tr>
